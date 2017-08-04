@@ -1,0 +1,18 @@
+{
+    "name": "kennethmervin01/payrollph",
+    "description": "Payroll Calculation for Philippines(SSS, PAG-IBIG, PHILHEALTH, BIR )",
+    "authors": [
+        {
+            "name": "Kenneth Mervin Enriquez",
+            "email": "kennethmervinenriquez@gmail.com"
+        }
+    ],
+    "require": {
+      "joshcam/mysqli-database-class" : "dev-master"
+    },
+    "autoload": {
+      "psr-4": {
+          "PayrollPH\\":"src/"
+      }
+    }
+}
