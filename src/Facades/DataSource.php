@@ -7,18 +7,19 @@ use MysqliDb;
 
 class DataSource implements DataSourceInterface
 {
-    protected $host;
-    protected $username;
-    protected $password;
-    protected $database;
+    public $host;
+    public $username;
+    public $password;
+    public $database;
+    public $db;
 
-    public function __contruct($host='localhost',$username='root',$password='', $database="human_resources"){
+    public function __construct($host='localhost',$username='root',$password='', $database="human_resources")
+    {
         $this->load($host,$username,$password,$database);
     }
 
     public function load($host,$username,$password,$database)
     {
-        $db = new MysqliDb($host,$root,$password,$database);
-        return $db;
+        $this->db = new MysqliDb($host,$username,$password,$database);
     }
 }

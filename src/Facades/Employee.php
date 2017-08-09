@@ -6,14 +6,14 @@ use PayrollPH\Contracts\EmployeeInterface;
 class Employee implements EmployeeInterface
 {
 
-    public $employee_id;
-    public $employee_name;
-    public $employee_basic_salary;
-    public $employee_allowances;
-    public $emloyee_lates;
-    public $employee_absences;
-    public $employee_paytype;
-    public $employee_frequency;
+    public $employee_id; // employee Id
+    public $employee_name; // employee name
+    public $employee_basic_salary; // employee basic salary
+    public $employee_allowances;   // employee additional allowances - decimal
+    public $employee_lates;        // employee_lates - decimal
+    public $employee_absences;    // employee_absences - decimal
+    public $employee_paytype;    // employee_paytype  - Monthly, SemiMonthly
+    public $employee_frequency; // frequency of pay day - SemiMonthly
 
     public static $instance;
 
@@ -83,9 +83,14 @@ class Employee implements EmployeeInterface
         $this->employee_frequency = $val;
     }
 
-    public function check()
+    public function getEmployee()
     {
-      //Add something later
+        return get_object_vars($this);
+    }
+
+    public function getBaseSalary()
+    {
+        return  $this->employee_basic_salary;
     }
 
 }
