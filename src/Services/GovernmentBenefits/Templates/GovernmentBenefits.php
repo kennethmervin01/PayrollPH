@@ -1,28 +1,29 @@
 <?php
 
-namespace PayrollPH\Concrete;
+namespace PayrollPH\Services\GovernmentBenefits\Templates;
+use PayrollPH\Services\GovernmentBenefits\Contracts\GBenefitsInterface;
 
-use PayrollPH\Contracts\DataSourceInterface;
-
-abstract class GovernmentBenefits
+class GovernmentBenefits
 {
     private $salary; //base salary
     private $db;    // source/database handler
     private $table;  // name table of government benefits
     private $from;   // name of column that includes the range salary from -  must be decimal
     private $to;     // name of column that includes the range salary to - must be decimal
-    private $deduction; // total deduction;
     private $ee; // employee share column
     private $er; // employer share column
     private $service; // employer share column
+    public $loader;
 
 
-
-    public function __construct(DataSourceInterface $ds, $salary = 0)
+    public function __construct(GBenefitsInterface $loader, $salary = 0)
     {
         $this->salary = $salary;
-        $this->db     = $ds->db; // set database coming from DataSourceInterface
+        $this->loader = $loader;
+        $this->db = $this->loader->loadDB();
+        $this->setReference($this->loader->setConfig());
     }
+
 
     public function setReference(array $reference)
     {
@@ -36,6 +37,8 @@ abstract class GovernmentBenefits
         $this->setEr($reference['er']);
         $this->setServiceName($reference['service']);
     }
+
+
 
     public function setTable($table)
     {
