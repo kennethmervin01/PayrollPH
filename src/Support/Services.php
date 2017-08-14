@@ -9,11 +9,23 @@ abstract class Services
     public function bind($service, $name)
     {
         $this->services[$name] = $service;
+        return $this;
     }
 
     public function make($name)
     {
         return $this->services[$name];
+    }
+    
+    public function run()
+    {
+        // get the args , firts argument must be a class name;
+        $args  = func_get_args();
+        // call reflection class
+        $ref = new \ReflectionClass($this->services[$args[0]]);
+        // remove firt member of array;
+        $remove1st = array_shift($args);
+        return $ref->newInstanceArgs($args);;
     }
 
     public function available()
