@@ -3,15 +3,22 @@
 namespace PayrollPH;
 
 use PayrollPH\Support\Services;
-use PayrollPH\Services\GovernmentBenefits\Facade as GBenefits;
-use PayrollPH\Services\Employee\Facade as Employee;
 
 class Kernel extends Services  {
 
   public function __construct()
   {
-      $this->bind(GBenefits::class, 'GBenefits');
-      $this->bind(Employee::class, 'Employee');
+      $this->bind(\PayrollPH\Services\DataSource::class, 'Database');
+      $this->bind(\PayrollPH\Services\GovernmentBenefits\Facade::class, 'GBenefits');
+      $this->bind(\PayrollPH\Services\Employee\Facade::class, 'Employee');
+      $this->bind(\PayrollPH\Services\Deductions\Facade::class, 'Deductions');
+      $this->autoRun();
+  }
+
+
+  public function autoRun()
+  {
+      $this->build('Database');
   }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace PayrollPH\Facades;
+namespace PayrollPH\Services;
 use PayrollPH\Contracts\DataSourceInterface;
 
 use MysqliDb;

@@ -20,12 +20,17 @@ class Facade extends Services
             $this->$key = $value;
         }
 
-        $this->bind($this->getEmployee(),'WHOYOU');
+        //$this->bind($this->getEmployee(),'WHOYOU');
     }
 
     public function getEmployee()
     {
         return get_object_vars($this);
+    }
+
+    public function getBaseSalary()
+    {
+        return $this->base_salary;
     }
 
 }
